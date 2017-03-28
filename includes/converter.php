@@ -8,6 +8,7 @@
   * @todo none
 */
 
+
 /**
  *
  */
@@ -21,17 +22,45 @@ class Convert
   }
 }
 
+if(isset($_POST['convert']))
+{
+    if(isset($_POST['MtoK']) && $_POST['MtoK']=="yes")
+    {
+          foreach ($totals as $total) {
+                $convertFormat = number_format((float)($total->total * 1.609344), 2, '.', '');
+                $convert = '
+                            <h4>Total ran: ' . $convertFormat . ' Km</h4>
+                            <form action="' . THIS_PAGE . '" method="post">
+                						<p><input type="radio" name="MtoK" value="no"/> Miles
+                							 <input type="radio" name="MtoK" value="yes" checked /> Kilometer</p>
+                							 <input type="submit" name="convert" value="Convert"  style="margin-bottom: 20px;" class="btn btn-primary"/>
+                						</form>';
+          }
 
-$conv = $run->unit;
-if ($conv == "Miles") {
-  foreach ($totals as $total) {
-    $convert = '<h4>Total ran: ' . $total->total . ' Miles';
-  }
-}else if ($conv == "Km"){
-  foreach ($totals as $total) {
-    $convertFormat = number_format((float)($total->total * 1.609344), 2, '.', '');
-    $convert = '<h4>Total ran: ' . $convertFormat . ' Km';
-  }
+    }else{
+          foreach ($totals as $total) {
+                $convert = '
+                            <h4>Total ran: ' . $total->total . ' Miles</h4>
+                            <form action="' . THIS_PAGE . '" method="post">
+                            <p><input type="radio" name="MtoK" value="no" checked /> Miles
+                               <input type="radio" name="MtoK" value="yes"/> Kilometer</p>
+                               <input type="submit" name="convert" value="Convert"  style="margin-bottom: 20px;" class="btn btn-primary"/>
+                            </form>';
+          }
+
+
+    }
+}else{
+    foreach ($totals as $total) {
+          $convert = '
+                      <h4>Total ran: ' . $total->total . ' Miles</h4>
+                      <form action="' . THIS_PAGE . '" method="post">
+              				<p><input type="radio" name="MtoK" value="no" checked /> Miles
+              					 <input type="radio" name="MtoK" value="yes"/> Kilometer</p>
+              					 <input type="submit" name="convert" value="Convert"  style="margin-bottom: 20px;" class="btn btn-primary"/>
+              				</form>';
+    }
 }
+
 
 $converts[] = new Convert($convert);
