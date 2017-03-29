@@ -10,38 +10,25 @@
 
 class RunConvert
 {
-  public $rSc = "";
+
   public $runConvert = "";
   public $d = "";
-  public $un = "Km";
-  public $unRunCon = "Km";
 
 
 
-  function __construct($rSc,$d,$runConvert,$un,$unRunCon)
+  function __construct($runConvert,$d)
   {
-    $this->rSc = $rSc;
-    $this->d = $d;
     $this->runConvert = $runConvert;
-    $this->un = $un;
-    $this->unRunCon = $unRunCon;
+    $this->d = $d;
   }
 }
 
 
   foreach ($runs as $run) {
-    $rSc = ($run->run * 1.609344);
+
     $d = $run->day;
-    $rc = ($run->length  * 1.609344);
 
-    if ($rc == 0) {
-      $runConvert = "";
-      $un = "";
-    }else{
-      $runConvert = $rc;
-      $rSc = "";
-      $unRunCon = "";
-    }
+    $runConvert = number_format((float)($run->length  * 1.609344), 2, '.', '');
 
-    $runConverts[] = new RunConvert($rSc,$d,$runConvert,$un,$unRunCon);
+    $runConverts[] = new RunConvert($runConvert,$d);
   }

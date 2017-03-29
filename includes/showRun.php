@@ -28,7 +28,7 @@ if(isset($_POST['convert']))
                 <div class="box" style="background-color:#f2f2f2;opacity: 0.8;color:#1a242f;font-weight:bolder;">
                   <div class="date">' . $runConvert->d . '</div>
                   <div style="clear:both"></div>
-                  <div class="run">' . $runConvert->runConvert . ' ' . $runConvert->un . '</div>
+                  <div class="run">' . $runConvert->runConvert . ' Km</div>
                 </div>';
           $allRuns[] = new AllRun($allRun);
         } else {
@@ -36,7 +36,7 @@ if(isset($_POST['convert']))
                 <div class="box">
                   <div class="date">' . $runConvert->d . '</div>
                   <div style="clear:both"></div>
-                  <div class="run">' . $runConvert->rSc . ' ' . $runConvert->unRunCon . '</div>
+                  <div class="run">Rest</div>
                 </div>';
           $allRuns[] = new AllRun($allRun);
         }
@@ -100,50 +100,4 @@ if(isset($_POST['convert']))
 
     }
 
-}
-
-if ($conv == "Miles") {
-  foreach ($runMiles as $runMile) {
-
-    if ($runMile->lengthMile > 0) {
-      $allRun = '
-            <div class="box" style="background-color:#f2f2f2;opacity: 0.8;color:#1a242f;font-weight:bolder;">
-                <div class="date">' . $runMile->dayMile . '</div>
-                <div style="clear:both"></div>
-                <div class="run">' . $runMile->lengthMile . ' ' . $runMile->unitMile . '</div>
-            </div>';
-
-    $allRuns[] = new AllRun($allRun);
-    } else {
-      $allRun = '
-            <div class="box">
-                <div class="date">' . $runMile->dayMile . '</div>
-                <div style="clear:both"></div>
-                <div class="run">' . $runMile->rSm . ' ' . $runMile->unitRunMile . '</div>
-            </div>';
-
-    $allRuns[] = new AllRun($allRun);
-    }
-  }
-}else{
-  foreach ($runConverts as $runConvert) {
-    if ($runConvert->runConvert > 0) {
-      $allRun = '
-            <div class="box" style="background-color:#f2f2f2;opacity: 0.8;color:#1a242f;font-weight:bolder;">
-              <div class="date">' . $runConvert->d . '</div>
-              <div style="clear:both"></div>
-              <div class="run">' . $runConvert->runConvert . ' ' . $runConvert->un . '</div>
-            </div>';
-      $allRuns[] = new AllRun($allRun);
-    } else {
-      $allRun = '
-            <div class="box">
-              <div class="date">' . $runConvert->d . '</div>
-              <div style="clear:both"></div>
-              <div class="run">' . $runConvert->rSc . ' ' . $runConvert->unRunCon . '</div>
-            </div>';
-      $allRuns[] = new AllRun($allRun);
-    }
-
-  }
 }
