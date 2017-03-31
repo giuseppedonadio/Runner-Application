@@ -48,11 +48,7 @@ foreach ($runs as $run) {
 
   $totalMinutes = $paceHour + $paceMinutes + $paceSeconds;
 
-
   $pace = $totalMinutes/$len;
-
-
-
 
   $minutesMile = floor($pace);
   $remainingMinutes = $pace - $minutesMile;
@@ -60,11 +56,8 @@ foreach ($runs as $run) {
 
   $secondsMileFormatted = number_format((float)$secondsMile, 0, '.', '');
 
-  $secondsMilePadded = sprintf("%02d", $secondsMileFormatted);
-  $minutesMilePadded = sprintf("%02d", $minutesMile);
-
-  $mileSecPace = $secondsMilePadded;
-  $mileMinPace = $minutesMilePadded;
+  $mileSecPace = sprintf("%02d", $secondsMileFormatted);
+  $mileMinPace = sprintf("%02d", $minutesMile);
 
 
   if ($lm == 0) {
