@@ -17,15 +17,19 @@ class RunMile
   public $dayMile = "";
   public $unitMile = "";
   public $unitRunMile = "";
-  public $lengthMile = 0;
+  public $lengthMile = "";
+  public $mileMinPace = "";
+  public $mileSecPace = "";
 
-  function __construct($rSm,$dayMile,$lengthMile,$unitMile,$unitRunMile)
+  function __construct($rSm,$dayMile,$lengthMile,$unitMile,$unitRunMile,$mileMinPace,$mileSecPace)
   {
     $this->rSm = $rSm;
     $this->dayMile = $dayMile;
     $this->lengthMile = $lengthMile;
     $this->unitMile = $unitMile;
     $this->unitRunMile = $unitRunMile;
+    $this->mileMinPace = $mileMinPace;
+    $this->mileSecPace = $mileSecPace;
 
   }
 }
@@ -37,6 +41,32 @@ foreach ($runs as $run) {
   $unitMile = $run->unit;
   $unitRunMile = $run->unit;
 
+  $paceHour = $run->hours * 60;
+  $paceMinutes = $run->minutes;
+  $paceSeconds = $run->seconds/60;
+  $len = $run->length;
+
+  $totalMinutes = $paceHour + $paceMinutes + $paceSeconds;
+
+
+  $pace = $totalMinutes/$len;
+
+
+
+
+  $minutesMile = floor($pace);
+  $remainingMinutes = $pace - $minutesMile;
+  $secondsMile = $remainingMinutes * 60;
+
+  $secondsMileFormatted = number_format((float)$secondsMile, 0, '.', '');
+
+  $secondsMilePadded = sprintf("%02d", $secondsMileFormatted);
+  $minutesMilePadded = sprintf("%02d", $minutesMile);
+
+  $mileSecPace = $secondsMilePadded;
+  $mileMinPace = $minutesMilePadded;
+
+
   if ($lm == 0) {
     $lengthMile = "";
     $unitMile = "";
@@ -46,6 +76,6 @@ foreach ($runs as $run) {
     $unitRunMile = "";
   }
 
-  $runMiles[] = new RunMile($rSm,$dayMile,$lengthMile,$unitMile,$unitRunMile);
+  $runMiles[] = new RunMile($rSm,$dayMile,$lengthMile,$unitMile,$unitRunMile,$mileMinPace,$mileSecPace);
 
 }

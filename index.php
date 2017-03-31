@@ -48,7 +48,6 @@ foreach ($allRuns as $allRun) {
   echo $allRun->allRun;
 }
 
-
 echo '</div>';
 
 get_footer(); #defaults to theme header or footer_inc.php

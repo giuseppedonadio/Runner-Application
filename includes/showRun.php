@@ -53,9 +53,12 @@ if(isset($_POST['convert']))
                   <div class="date">' . $runMile->dayMile . '</div>
                   <div style="clear:both"></div>
                   <div class="run">' . $runMile->lengthMile . ' ' . $runMile->unitMile . '</div>
+                  <div style="clear:both"></div>
+                  <div class="pace">' . $runMile->mileMinPace . ':' . $runMile->mileSecPace . ' Min/Mile</div>
               </div>';
 
       $allRuns[] = new AllRun($allRun);
+
       } else {
         $allRun = '
               <div class="box">
@@ -83,6 +86,8 @@ if(isset($_POST['convert']))
                   <div class="date">' . $runMile->dayMile . '</div>
                   <div style="clear:both"></div>
                   <div class="run">' . $runMile->lengthMile . ' ' . $runMile->unitMile . '</div>
+                  <div style="clear:both"></div>
+                  <div class="pace">' . $runMile->mileMinPace . ':' . $runMile->mileSecPace . ' Min/Mile</div>
               </div>';
 
       $allRuns[] = new AllRun($allRun);

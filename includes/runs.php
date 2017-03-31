@@ -16,15 +16,22 @@ class Run
   public $run = "";
   public $day = "";
   public $unit = "";
-  public $length = 0;
+  public $length = "";
+  public $hours = "";
+  public $minutes = "";
+  public $seconds = "";
 
-  function __construct($run,$day,$length,$unit)
+  function __construct($run,$day,$length,$unit,$hours,$minutes,$seconds)
   {
     $this->run = $run;
     $this->day = $day;
     $this->length = $length;
     $this->unit = $unit;
+    $this->hours = $hours;
+    $this->minutes = $minutes;
+    $this->seconds = $seconds;
   }
+
 }
 
 # SQL statement
@@ -39,7 +46,10 @@ if(mysqli_num_rows($result) > 0)
     $Day = dbOut($row['Day']);
     $Length = dbOut($row['Lenght']);
     $Unit = dbOut($row['Unit']);
-    $runs[]=new Run($RunScheduled,$Day,$Length,$Unit);
+    $Hours = dbOut($row['Hours']);
+    $Minutes = dbOut($row['Minutes']);
+    $Seconds = dbOut($row['Seconds']);
+    $runs[]=new Run($RunScheduled,$Day,$Length,$Unit,$Hours,$Minutes,$Seconds);
   }
 }
 @mysqli_free_result($result);
